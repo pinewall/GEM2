@@ -18,7 +18,12 @@ OBJS=$(MODPATH)/IO_netCDF.o $(MODPATH)/SParseMatrix.o $(MODPATH)/STL_SparseMatri
      $(MODPATH)/xml_base.o $(MODPATH)/meta.o $(MODPATH)/cdfcopyer.o $(MODPATH)/remap.o $(MODPATH)/units.o\
      $(MODPATH)/xml_test.o
 
+$(OBJS): | $(MODPATH)
+$(MODPATH):
+	mkdir -p $(MODPATH)
+
 # binaries or testers
+all: gem remap meta
 units: $(MODPATH)/xml_base.o $(MODPATH)/IO_netCDF.o $(MODPATH)/units.o
 	$(CC) $(NETCDF_LIB) $+ $(LIB) -o $@
 remap: $(MODPATH)/remap.o
@@ -53,5 +58,6 @@ lib:
 
 clean:
 	rm -f $(MODPATH)/*.o
+	rm -rf $(MODPATH)
 distclean:
-	rm -rf $(MODPATH) unit_test toy_test sparse_test
+	rm -rf $(MODPATH) units remap cdfcopyer meta xml_test gem unit_test toy_test sparse_test
