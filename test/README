@@ -1,0 +1,12 @@
+For testing, 
+there should be two files X_Y.nc X_Y.xml.
+
+X means source grid name
+Y means destination grid name
+
+You could run 
+$ ../gem X_Y.nc X_Y.xml X_Y.order2.nc 
+to get order2 remap file X_Y.order2.nc.
+
+NOTE: Your could get X_Y.xml by running
+$ ../meta X_Y.nc X_Y.xml
